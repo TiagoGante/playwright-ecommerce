@@ -1,15 +1,11 @@
-import { test } from "@playwright/test"
-import { HomePage } from "../page-objects/homepage"
+import { test } from "../fixtures/test"
 
 test.describe("Homepage", () => {
-  let homePage: HomePage
-
-  test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page)
+  test.beforeEach(async ({ homePage }) => {
     await homePage.navigateToHomePageUrl()
   })
 
-  test("The name of the store is visible", async ({}) => {
+  test("The name of the store is visible", async ({ homePage }) => {
     await homePage.homePageTitleIsVisible()
   })
 
@@ -20,7 +16,7 @@ test.describe("Homepage", () => {
   ]
 
   products.forEach((product) => {
-    test(`Product ${product.name} is featured on the homepage.`, async ({}) => {
+    test(`Product ${product.name} is featured on the homepage.`, async ({ homePage }) => {
       await homePage.expectProductIsFeatured(product.name, product.handle)
     })
   })
