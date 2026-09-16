@@ -1,0 +1,17 @@
+{
+  "name": "playwright-ecommerce-ai",
+  "version": "1.0.0",
+  "description": "E2E testing framework built with Playwright for a e-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.3"
+  }
+}
