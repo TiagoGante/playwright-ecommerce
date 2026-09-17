@@ -12,7 +12,7 @@ test.describe("Homepage", () => {
 
   PRODUCTS.filter((p) => p.featured).forEach((product) => {
     test(`Product ${product.name} is featured on the homepage.`, async ({ homePage }) => {
-      await homePage.expectProductIsFeatured(product.name, product.handle)
+      await homePage.expectProductCard(product.name, product.handle)
     })
   })
 

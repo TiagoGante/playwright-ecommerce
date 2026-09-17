@@ -7,6 +7,25 @@ export class BasePage {
     return this.page.locator("#sidebar").getByRole("link", { name })
   }
 
+  productCard(name: string): Locator {
+    return this.page.getByRole("link", { name })
+  }
+
+  async expectProductCard(name: string, handle: string) {
+    await test.step("The product is visible", async () => {
+      await expect(this.productCard(name)).toBeVisible()
+    })
+    await test.step("The product has a link to be redirected", async () => {
+      await expect(this.productCard(name)).toHaveAttribute("href", new RegExp(`/products/${handle}$`))
+    })
+    await test.step("The product price is visible", async () => {
+      await expect(this.productCard(name).locator("h4")).toBeVisible()
+    })
+    await test.step("The product image is visible", async () => {
+      await expect(this.productCard(name).locator("img")).toBeVisible()
+    })
+  }
+
   async expectMenuLink(name: string, href: string) {
     await test.step(`${name} is a visible option in the sidebar`, async () => {
       await expect(this.menuLink(name)).toBeVisible()
