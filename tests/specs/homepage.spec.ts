@@ -1,4 +1,5 @@
 import { test } from "../fixtures/test"
+import { PRODUCTS } from "../data/products"
 
 test.describe("Homepage", () => {
   test.beforeEach(async ({ homePage }) => {
@@ -6,18 +7,16 @@ test.describe("Homepage", () => {
   })
 
   test("The name of the store is visible", async ({ homePage }) => {
-    await homePage.homePageTitleIsVisible()
+    await homePage.expectHomePageTitleIsVisible()
   })
 
-  const products = [
-    { name: "Grey jacket", handle: "grey-jacket" },
-    { name: "Noir jacket", handle: "noir-jacket" },
-    { name: "Striped top", handle: "striped-top" },
-  ]
-
-  products.forEach((product) => {
+  PRODUCTS.filter((p) => p.featured).forEach((product) => {
     test(`Product ${product.name} is featured on the homepage.`, async ({ homePage }) => {
       await homePage.expectProductIsFeatured(product.name, product.handle)
     })
+  })
+
+  test("The heading is visible in the homepage", async ({ homePage }) => {
+    await homePage.expectHomePageTaglineIsVisible()
   })
 })
