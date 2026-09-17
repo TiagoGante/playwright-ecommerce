@@ -5,8 +5,8 @@ export class HomePage extends BasePage {
     await this.page.goto("/")
   }
 
-  async expectHomePageTitleIsVisible() {
-    await expect(this.page).toHaveTitle("Sauce Demo")
+  async expectHomePageTitleIsVisible(title: string) {
+    await expect(this.page).toHaveTitle(title)
   }
 
   async expectHomePageTaglineIsVisible() {

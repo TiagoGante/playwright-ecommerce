@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "test:chromium": "playwright test --project=chromium",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.63.0",
-    "@types/node": "^22.20.3"
+    "@types/node": "^22.20.3",
+    "typescript": "^7.0.2"
   }
 }
