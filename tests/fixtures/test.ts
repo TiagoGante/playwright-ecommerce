@@ -1,10 +1,12 @@
 import { test as base } from "@playwright/test"
 import { HomePage } from "../page-objects/homepage"
 import { CatalogPage } from "../page-objects/catalog.page"
+import { ProductPage } from "../page-objects/product.page"
 
 type Fixtures = {
   homePage: HomePage
   catalogPage: CatalogPage
+  productPage: ProductPage
 }
 
 export const test = base.extend<Fixtures>({
@@ -13,6 +15,9 @@ export const test = base.extend<Fixtures>({
   },
   catalogPage: async ({ page }, use) => {
     await use(new CatalogPage(page))
+  },
+  productPage: async ({ page }, use) => {
+    await use(new ProductPage(page))
   },
 })
 
