@@ -7,7 +7,7 @@ test.describe("Homepage", () => {
   })
 
   test("The name of the store is visible", async ({ homePage }) => {
-    await homePage.expectHomePageTitleIsVisible()
+    await homePage.expectHomePageTitleIsVisible("Sauce Demo")
   })
 
   PRODUCTS.filter((p) => p.featured).forEach((product) => {
@@ -16,7 +16,7 @@ test.describe("Homepage", () => {
     })
   })
 
-  test("The heading is visible in the homepage", async ({ homePage }) => {
+  test("The tagline is visible on the homepage", async ({ homePage }) => {
     await homePage.expectHomePageTaglineIsVisible()
   })
 })
