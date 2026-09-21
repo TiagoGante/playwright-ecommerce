@@ -17,7 +17,6 @@ export class ProductPage extends BasePage {
     return this.page.locator("#add")
   }
   variantSelector(option: string): Locator {
-    //this selector is for size and color
     return this.page.getByLabel(option)
   }
 
@@ -46,5 +45,15 @@ export class ProductPage extends BasePage {
   async expectNoVariantOptions() {
     await expect(this.variantSelector("Size")).toHaveCount(0)
     await expect(this.variantSelector("Color")).toHaveCount(0)
+  }
+
+  async selectVariant(option: string, value: string) {
+    await this.variantSelector(option).selectOption(value)
+  }
+
+  async addToCart() {
+    const before = Number((await this.cartCounter.innerText()).replace(/\D/g, ""))
+    await this.addToCartButton.click()
+    await expect(this.cartCounter).toHaveText(`(${before + 1})`)
   }
 }

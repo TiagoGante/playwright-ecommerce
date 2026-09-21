@@ -19,6 +19,10 @@ export class BasePage {
     return this.page.locator("#minicart").getByRole("link", { name })
   }
 
+  get cartCounter(): Locator {
+    return this.page.locator("#cart-target-desktop")
+  }
+
   async expectProductCard(name: string, handle: string) {
     await test.step("The product is visible", async () => {
       await expect(this.productCard(name)).toBeVisible()
@@ -58,6 +62,12 @@ export class BasePage {
     })
     await test.step(`${name} links to ${href}`, async () => {
       await expect(this.miniCartLink(name)).toHaveAttribute("href", href)
+    })
+  }
+
+  async expectCartCount(count: number) {
+    await test.step(`The cart counter shows (${count})`, async () => {
+      await expect(this.cartCounter).toHaveText(`(${count})`)
     })
   }
 }
