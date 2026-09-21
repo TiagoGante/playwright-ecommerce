@@ -29,4 +29,29 @@ test.describe("Product Page", () => {
       })
     })
   })
+
+  PRODUCTS.filter((p) => p.options).forEach((product) => {
+    test(`${product.name} has different options available in size and color`, async ({ productPage }) => {
+      await test.step(`Navigate to the product page`, async () => {
+        await productPage.navigateToProduct(product.handle)
+      })
+      await test.step(`Product has diferent sizes`, async () => {
+        await productPage.expectVariantOptions("Size", product.options!.Size)
+      })
+      await test.step(`Product has diferent colors`, async () => {
+        await productPage.expectVariantOptions("Color", product.options!.Color)
+      })
+    })
+  })
+
+  PRODUCTS.filter((p) => !p.options).forEach((product) => {
+    test(`${product.name} doesn't have variant options`, async ({ productPage }) => {
+      await test.step(`Navigate to the product page`, async () => {
+        await productPage.navigateToProduct(product.handle)
+      })
+      await test.step(`Product doesn't have size and color options`, async () => {
+        await productPage.expectNoVariantOptions()
+      })
+    })
+  })
 })

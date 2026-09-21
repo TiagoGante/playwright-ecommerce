@@ -1,4 +1,13 @@
-export const PRODUCTS = [
+type Product = {
+  name: string
+  handle: string
+  price: string
+  inStock: boolean
+  featured: boolean
+  options?: { Size: string[]; Color: string[] }
+}
+
+export const PRODUCTS: Product[] = [
   { name: "Grey jacket", handle: "grey-jacket", price: "£55.00", inStock: true, featured: true },
   {
     name: "Noir jacket",
