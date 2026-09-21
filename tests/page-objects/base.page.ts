@@ -11,6 +11,14 @@ export class BasePage {
     return this.page.getByRole("link", { name })
   }
 
+  headerLink(name: string): Locator {
+    return this.page.locator("header nav").getByRole("link", { name, exact: true })
+  }
+
+  miniCartLink(name: string): Locator {
+    return this.page.locator("#minicart").getByRole("link", { name })
+  }
+
   async expectProductCard(name: string, handle: string) {
     await test.step("The product is visible", async () => {
       await expect(this.productCard(name)).toBeVisible()
@@ -32,6 +40,24 @@ export class BasePage {
     })
     await test.step(`${name} links to ${href}`, async () => {
       await expect(this.menuLink(name)).toHaveAttribute("href", href)
+    })
+  }
+
+  async expectHeaderLink(name: string, href: string) {
+    await test.step(`${name} is a visible option in the sidebar`, async () => {
+      await expect(this.headerLink(name)).toBeVisible()
+    })
+    await test.step(`${name} links to ${href}`, async () => {
+      await expect(this.headerLink(name)).toHaveAttribute("href", href)
+    })
+  }
+
+  async expectMiniCartLink(name: string, href: string) {
+    await test.step(`${name} is a visible option in the mini cart`, async () => {
+      await expect(this.miniCartLink(name)).toBeVisible()
+    })
+    await test.step(`${name} links to ${href}`, async () => {
+      await expect(this.miniCartLink(name)).toHaveAttribute("href", href)
     })
   }
 }
