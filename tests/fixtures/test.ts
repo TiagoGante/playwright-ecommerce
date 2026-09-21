@@ -3,12 +3,14 @@ import { HomePage } from "../page-objects/home.page"
 import { CatalogPage } from "../page-objects/catalog.page"
 import { ProductPage } from "../page-objects/product.page"
 import { CartPage } from "../page-objects/cart.page"
+import { SearchPage } from "../page-objects/search.page"
 
 type Fixtures = {
   homePage: HomePage
   catalogPage: CatalogPage
   productPage: ProductPage
   cartPage: CartPage
+  searchPage: SearchPage
 }
 
 export const test = base.extend<Fixtures>({
@@ -23,6 +25,9 @@ export const test = base.extend<Fixtures>({
   },
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page))
+  },
+  searchPage: async ({ page }, use) => {
+    await use(new SearchPage(page))
   },
 })
 

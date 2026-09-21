@@ -23,6 +23,16 @@ export class BasePage {
     return this.page.locator("#cart-target-desktop")
   }
 
+  get searchField(): Locator {
+    return this.page.locator("#search-field")
+  }
+
+  /** Escreve no campo do header e submete. */
+  async searchFor(term: string) {
+    await this.searchField.fill(term)
+    await this.searchField.press("Enter")
+  }
+
   async expectProductCard(name: string, handle: string) {
     await test.step("The product is visible", async () => {
       await expect(this.productCard(name)).toBeVisible()
