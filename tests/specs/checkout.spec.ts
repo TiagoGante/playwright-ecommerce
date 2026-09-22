@@ -6,7 +6,7 @@ const PRODUCT = PRODUCTS.find((p) => p.inStock && !p.options)!
 const SHIPPING = 10
 const TOTAL = `£${(Number(PRODUCT.price.replace("£", "")) + SHIPPING).toFixed(2)}`
 
-test.describe("Checkout", () => {
+test.describe("Checkout", { tag: "@checkout" }, () => {
   test.slow()
 
   test.beforeEach(async ({ productPage, cartPage, checkoutPage }) => {
