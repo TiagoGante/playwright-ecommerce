@@ -1,22 +1,25 @@
 import { defineConfig, devices } from "@playwright/test"
 
 const BASE_URL = process.env.BASE_URL ?? "https://sauce-demo.myshopify.com"
+const isCI = !!process.env.CI
+
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  retries: 0,
-  workers: 4,
-  reporter: [["list"], ["html", { open: "never" }]],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: BASE_URL,
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+  workers: isCI ? 2 : 3,
+  retries: isCI ? 2 : 0,
+
+  forbidOnly: isCI,
+
+  reporter: [["list"], ["html", { open: "never" }]],
+
+  use: {
+    baseURL: BASE_URL,
     trace: "retain-on-failure",
+    screenshot: "only-on-failure",
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
       name: "chromium",

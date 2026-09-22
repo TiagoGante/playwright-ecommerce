@@ -6,6 +6,14 @@ export class CartPage extends BasePage {
     await this.page.goto("/cart")
   }
 
+  get checkoutButton(): Locator {
+    return this.page.locator("#checkout")
+  }
+
+  async goToCheckout() {
+    await this.checkoutButton.click()
+  }
+
   cartSection(): Locator {
     return this.page.locator("section#cart")
   }
