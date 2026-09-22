@@ -8,7 +8,7 @@ the payments that are _supposed_ to fail.
 
 > Built with [Claude Code](https://claude.com/claude-code) as a pair: used to
 > probe the store's DOM, surface edge cases worth covering and speed up writing
-> the test cases themselves. Every decision below was made and reviewed by me —
+> the test cases themselves. Every decision below was made and reviewed by me
 > which is why they're all explained rather than just listed.
 
 ## Quick start
