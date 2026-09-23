@@ -27,7 +27,6 @@ export class BasePage {
     return this.page.locator("#search-field")
   }
 
-  /** Escreve no campo do header e submete. */
   async searchFor(term: string) {
     await this.searchField.fill(term)
     await this.searchField.press("Enter")
